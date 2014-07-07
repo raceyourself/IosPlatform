@@ -14,4 +14,7 @@
 + (void)loginWithUsername:(NSString *)username withPassword:(NSString *)password
                                                withCallback:(BOOL(^)(NSString *state))callback;
 
++ (void)sync;
++ (void)syncWithCallback:(BOOL(^)(NSString *state))callback;
+
 @end

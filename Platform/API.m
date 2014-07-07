@@ -18,6 +18,9 @@ static NSString *const RYClientId = @"c9842247411621e35dbaf21ad0e15c263364778bf9
 static NSString *const RYClientSecret = @"75f3e999c01942219bea1e9c0a1f76fd24c3d55df6b1c351106cc686f7fcd819";
 
 static NSMutableArray *loginCallbacks = nil;
+static NSMutableArray *syncCallbacks = nil;
+
+static NSThread *syncThread = nil;
 
 + (void)addLoginCallback:(BOOL(^)(NSString *state))callback
 {
@@ -34,6 +37,23 @@ static NSMutableArray *loginCallbacks = nil;
     }
   }
   [loginCallbacks removeObjectsInArray:completedCallbacks];
+}
+
++ (void)addSyncCallback:(BOOL(^)(NSString *state))callback
+{
+  if (syncCallbacks == nil) syncCallbacks = [NSMutableArray new];
+  [syncCallbacks addObject:callback];
+}
+
++ (void)onSync:(NSString *)state
+{
+  NSMutableArray *completedCallbacks = [NSMutableArray new];
+  for (BOOL(^callback)(NSString *state) in syncCallbacks) {
+    if (callback(state) == YES) {
+      [completedCallbacks addObject:callback];
+    }
+  }
+  [syncCallbacks removeObjectsInArray:completedCallbacks];
 }
 
 + (void)loginWithUsername:(NSString *)username withPassword:(NSString *)password 
@@ -67,6 +87,7 @@ static NSMutableArray *loginCallbacks = nil;
   operation.responseSerializer = [AFJSONResponseSerializer serializer];
 
   [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id JSON) {
+    [AccessToken MR_truncateAll]; // There can be only one!
     AccessToken *token = [AccessToken MR_createEntity];
     token.access_token = [JSON objectForKey:@"access_token"];
     int expires_in = [[JSON objectForKey:@"expires_in"] intValue];
@@ -82,6 +103,78 @@ static NSMutableArray *loginCallbacks = nil;
   }];
 
   [operation start];
+}
+
++ (void)syncWithCallback:(BOOL(^)(NSString *state))callback
+{
+  [API addSyncCallback:callback];
+  [API sync];
+}
+
++ (void)sync
+{
+  if (syncThread != nil && [syncThread isExecuting] == YES) {
+    NSLog(@"API:sync is already running");
+    return;
+  }
+  // TODO: NSOperation?
+  syncThread = [[NSThread alloc] initWithTarget:self
+                                       selector:@selector(internalSync)
+                                         object:nil];
+  [syncThread start];
+}
+
++ (void)internalSync
+{
+  NSString *state = @"failure";
+  @try {
+    AccessToken *at = [AccessToken MR_findFirst];
+    if (at == nil || [at.expiration_time timeIntervalSinceDate:[NSDate date]] <= 0) {
+      NSLog(@"API:sync failed: no valid access token");
+      state = @"unauthorized";
+      return;
+    }
+
+    // TODO: Load from db
+    int timestamp = 0;
+
+    NSLog(@"API:syncing from timstamp %d", timestamp);
+
+    NSData *postData = [@"{\"data\":{}}" dataUsingEncoding:NSUTF8StringEncoding];
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[RYApiUrl stringByAppendingFormat:@"sync/%d", timestamp]]];
+    NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:[@"Bearer " stringByAppendingString:at.access_token] forHTTPHeaderField:@"Authorization"];
+    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:postData];
+
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id JSON) {
+      NSString *state = @"failure";
+      @try {
+        NSLog(@"API:sync succeeded");
+        state = @"full";
+      }
+      @finally {
+        [API onSync:state];
+        syncThread = nil;
+      }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+      NSLog(@"API:sync failed with %@", [error localizedDescription]);
+      [API onSync:@"failure"];
+      syncThread = nil;
+    }];
+
+    [operation start];
+  }
+  @catch (NSException * e) {
+    [API onSync:state];
+    syncThread = nil;
+  }
 }
 
 + (NSData*)encodeDictionary:(NSDictionary*)dictionary 

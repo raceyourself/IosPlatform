@@ -31,7 +31,18 @@
     AccessToken *token = [AccessToken MR_findFirst];
     if (token == nil || nil == nil) {
       [API loginWithUsername:@"janne.husberg@raceyourself.com" withPassword:@"testing123" withCallback:^BOOL (NSString *state) {
-        NSLog(@"Bob's your uncle! %@", state);
+        if ([state isEqualToString:@"success"]) {
+          [API syncWithCallback:^BOOL (NSString *state) {
+            if ([state isEqualToString:@"full"] || [state isEqualToString:@"partial"]) {
+              NSLog(@"Synced to server");
+            } else {
+              NSLog(@"Could not sync!");
+            }
+            return YES;
+          }];
+        } else {
+          NSLog(@"Could not log in!");
+        }
         return YES;
       }]; 
     }
