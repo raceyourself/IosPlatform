@@ -10,4 +10,8 @@
 
 @interface API : NSObject
 
++ (void)loginWithUsername:(NSString *)username withPassword:(NSString *)password;
++ (void)loginWithUsername:(NSString *)username withPassword:(NSString *)password
+                                               withCallback:(BOOL(^)(NSString *state))callback;
+
 @end
