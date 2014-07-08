@@ -11,6 +11,49 @@
         <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="authentications" inverseEntity="User" syncable="YES"/>
     </entity>
+    <entity name="Challenge" representedClassName="Challenge" syncable="YES">
+        <attribute name="accepted" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="creator_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES">
+            <userInfo>
+                <entry key="mappedKeyName" value="description"/>
+            </userInfo>
+        </attribute>
+        <attribute name="distance" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="points_awarded" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="prize" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="public" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="start_time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="stop_time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <userInfo>
+            <entry key="relatedByAttribute" value="id"/>
+        </userInfo>
+    </entity>
+    <entity name="Friend" representedClassName="Friend" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="provider" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <userInfo>
+            <entry key="relatedByAttribute" value="id"/>
+        </userInfo>
+    </entity>
+    <entity name="Friendship" representedClassName="Friendship" syncable="YES">
+        <attribute name="deleted_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identity_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identity_uid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="friend" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Friend" syncable="YES"/>
+        <userInfo>
+            <entry key="relatedByAttribute" value="id"/>
+        </userInfo>
+    </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
@@ -30,5 +73,8 @@
         <element name="AccessToken" positionX="-54" positionY="-9" width="128" height="88"/>
         <element name="User" positionX="-54" positionY="9" width="128" height="193"/>
         <element name="Authentication" positionX="-45" positionY="81" width="128" height="103"/>
+        <element name="Friendship" positionX="-27" positionY="99" width="128" height="118"/>
+        <element name="Friend" positionX="-9" positionY="108" width="128" height="133"/>
+        <element name="Challenge" positionX="9" positionY="126" width="128" height="238"/>
     </elements>
 </model>

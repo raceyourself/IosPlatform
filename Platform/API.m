@@ -11,6 +11,9 @@
 #import "Models/AccessToken.h"
 #import "Models/User+Mapping.h"
 #import "Models/Authentication.h"
+#import "Models/Challenge.h"
+#import "Models/Friendship+Mapping.h"
+#import "Models/Friend+Mapping.h"
 
 @implementation API
 
@@ -75,7 +78,7 @@ static NSThread *syncThread = nil;
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id JSON) {
       NSLog(@"API:fetch(%@, %@) cached for 0 seconds", route, type);
-      id object = [type MR_importFromObject:[JSON objectForKey:@"response"]];
+      id object = [API importFromObject:[JSON objectForKey:@"response"] withType:type];
       callback(object);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
       NSLog(@"API:fetch(%@, %@) failed with %@", route, type, [error localizedDescription]);
@@ -127,8 +130,7 @@ static NSThread *syncThread = nil;
       if (object != nil) {
         User *user = (User*)object;
         token.user = user;
-        [[NSManagedObjectContext MR_defaultContext]
-        MR_saveToPersistentStoreAndWait]; 
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait]; 
         NSLog(@"API:loginWithUsername(%@) succeeded; user_id: %@", username, user.id);
         [API onLogin:@"success"];
       } else {
@@ -163,6 +165,49 @@ static NSThread *syncThread = nil;
   [syncThread start];
 }
 
++ (id)importFromObject:(id)objectData withType:(Class)type
+{
+    NSAttributeDescription *primaryAttribute = [[type MR_entityDescription] MR_primaryAttributeToRelateBy];
+    
+    id value = nil;
+    if ([type respondsToSelector:@selector(extractPKFromObject:)]) {
+      value = [type extractPKFromObject:objectData];
+      NSLog(@"Extracted %@", value);
+    } else {
+      value = [objectData MR_valueForAttribute:primaryAttribute];
+    }    
+
+    NSManagedObject *managedObject = nil;
+    if (primaryAttribute != nil)
+    {
+        managedObject = [type MR_findFirstByAttribute:[primaryAttribute name] withValue:value];
+    }
+    if (managedObject == nil)
+    {
+        managedObject = [type MR_createEntity];
+    }
+
+    [managedObject MR_importValuesForKeysWithObject:objectData];
+
+    return managedObject;
+}
+
++ (NSArray*)importFromArray:(NSArray*)listOfObjectData withType:(Class)type
+{
+  NSMutableArray *dataObjects = [NSMutableArray array];
+
+  [listOfObjectData enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
+  {
+      NSDictionary *objectData = (NSDictionary *)obj;
+
+      NSManagedObject *dataObject = [API importFromObject:objectData withType:type];
+
+      [dataObjects addObject:dataObject];
+  }];
+
+  return dataObjects;
+}
+
 + (void)internalSync
 {
   NSString *state = @"failure";
@@ -195,6 +240,12 @@ static NSThread *syncThread = nil;
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id JSON) {
       NSString *state = @"failure";
       @try {
+        id response = [JSON objectForKey:@"response"];
+        NSArray *friendships = [API importFromArray:[response objectForKey:@"friends"] withType:[Friendship class]];
+        NSLog(@"%d friends ret", [friendships count]);
+        NSLog(@"%d friends", [[Friendship MR_findAll] count]);
+        NSLog(@"%d friendsx", [[Friend MR_findAll] count]);
+        [[NSManagedObjectContext MR_defaultContext] MR_saveToPersistentStoreAndWait]; 
         NSLog(@"API:sync succeeded");
         state = @"full";
       }
