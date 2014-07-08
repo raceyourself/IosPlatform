@@ -9,6 +9,8 @@
 #import "API.h"
 #import "AFNetworking.h"
 #import "Models/AccessToken.h"
+#import "Models/User+Mapping.h"
+#import "Models/Authentication.h"
 
 @implementation API
 
@@ -56,6 +58,33 @@ static NSThread *syncThread = nil;
   [syncCallbacks removeObjectsInArray:completedCallbacks];
 }
 
++ (void)fetchRoute:(NSString*)route forType:(Class)type withCallback:(void(^)(id object))callback
+{
+    AccessToken *at = [AccessToken MR_findFirst];
+    if (at == nil || [at.expiration_time timeIntervalSinceDate:[NSDate date]] <= 0) {
+      callback(nil);
+    }
+
+    NSLog(@"API:fetching route %@ for %@", route, type);
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[RYApiUrl stringByAppendingString:route]]];
+    [request setValue:[@"Bearer " stringByAppendingString:at.access_token] forHTTPHeaderField:@"Authorization"];
+
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id JSON) {
+      NSLog(@"API:fetch(%@, %@) cached for 0 seconds", route, type);
+      id object = [type MR_importFromObject:[JSON objectForKey:@"response"]];
+      callback(object);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+      NSLog(@"API:fetch(%@, %@) failed with %@", route, type, [error localizedDescription]);
+      callback(nil);
+    }];
+
+    [operation start];
+}
+
 + (void)loginWithUsername:(NSString *)username withPassword:(NSString *)password 
                                                withCallback:(BOOL(^)(NSString *state))callback
 {
@@ -92,11 +121,21 @@ static NSThread *syncThread = nil;
     token.access_token = [JSON objectForKey:@"access_token"];
     int expires_in = [[JSON objectForKey:@"expires_in"] intValue];
     token.expiration_time = [[NSDate date] dateByAddingTimeInterval:expires_in];
+    NSLog(@"API:loginWithUsername(%@) received an access token", username);
 
-    [[NSManagedObjectContext MR_defaultContext]
-    MR_saveToPersistentStoreAndWait]; 
-    NSLog(@"API:loginWithUsername(%@) succeeded", username);
-    [API onLogin:@"success"];
+    [API fetchRoute:@"me" forType:[User class] withCallback:^void (id object) {
+      if (object != nil) {
+        User *user = (User*)object;
+        token.user = user;
+        [[NSManagedObjectContext MR_defaultContext]
+        MR_saveToPersistentStoreAndWait]; 
+        NSLog(@"API:loginWithUsername(%@) succeeded; user_id: %@", username, user.id);
+        [API onLogin:@"success"];
+      } else {
+        NSLog(@"API:loginWithUsername(%@) failed to fetch logged-in user", username);
+        [API onLogin:@"failure"];
+      }
+    }];
   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     NSLog(@"API:loginWithUsername(%@) failed with %@", username, [error localizedDescription]);
     [API onLogin:@"failure"];

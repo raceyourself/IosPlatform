@@ -8,6 +8,7 @@
 
 #import "RYViewController.h"
 #import "Models/AccessToken.h"
+#import "Models/User.h"
 #import "API.h"
 
 @interface RYViewController ()
@@ -35,6 +36,8 @@
           [API syncWithCallback:^BOOL (NSString *state) {
             if ([state isEqualToString:@"full"] || [state isEqualToString:@"partial"]) {
               NSLog(@"Synced to server");
+              AccessToken *token = [AccessToken MR_findFirst];
+              [self.debugTextView setText:[NSString stringWithFormat:@"Hello %@, you have %d authentications", token.user.name, token.user.authentications.count]];
             } else {
               NSLog(@"Could not sync!");
             }

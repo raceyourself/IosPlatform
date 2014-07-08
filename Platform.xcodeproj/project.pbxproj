@@ -25,8 +25,11 @@
 		F5B0120A1966BA9C001C2050 /* PlatformTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B012091966BA9C001C2050 /* PlatformTests.m */; };
 		F5B012141966BB5A001C2050 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B012131966BB5A001C2050 /* CoreData.framework */; };
 		F5B012721966D407001C2050 /* Platform.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F5B012701966D407001C2050 /* Platform.xcdatamodeld */; };
-		F5B012751966D4F5001C2050 /* AccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = F5B012741966D4F5001C2050 /* AccessToken.m */; };
 		FB733936196AD28100D33BBE /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = FB733935196AD28100D33BBE /* API.m */; };
+		FBD1FCE7196C0C9A00F708BC /* User+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FCE6196C0C9A00F708BC /* User+Mapping.m */; };
+		FBD1FCEA196C0F5C00F708BC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FCE9196C0F5C00F708BC /* User.m */; };
+		FBD1FCED196C0F5D00F708BC /* Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FCEC196C0F5D00F708BC /* Authentication.m */; };
+		FBD1FCF0196C0F5D00F708BC /* AccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FCEF196C0F5D00F708BC /* AccessToken.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,10 +67,16 @@
 		F5B012091966BA9C001C2050 /* PlatformTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlatformTests.m; sourceTree = "<group>"; };
 		F5B012131966BB5A001C2050 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		F5B012711966D407001C2050 /* Platform.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Platform.xcdatamodel; sourceTree = "<group>"; };
-		F5B012731966D4F5001C2050 /* AccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccessToken.h; path = Models/AccessToken.h; sourceTree = "<group>"; };
-		F5B012741966D4F5001C2050 /* AccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccessToken.m; path = Models/AccessToken.m; sourceTree = "<group>"; };
 		FB733934196AD28100D33BBE /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
 		FB733935196AD28100D33BBE /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
+		FBD1FCE5196C0C9A00F708BC /* User+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "User+Mapping.h"; path = "Models/User+Mapping.h"; sourceTree = "<group>"; };
+		FBD1FCE6196C0C9A00F708BC /* User+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "User+Mapping.m"; path = "Models/User+Mapping.m"; sourceTree = "<group>"; };
+		FBD1FCE8196C0F5C00F708BC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Models/User.h; sourceTree = "<group>"; };
+		FBD1FCE9196C0F5C00F708BC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Models/User.m; sourceTree = "<group>"; };
+		FBD1FCEB196C0F5D00F708BC /* Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Authentication.h; path = Models/Authentication.h; sourceTree = "<group>"; };
+		FBD1FCEC196C0F5D00F708BC /* Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Authentication.m; path = Models/Authentication.m; sourceTree = "<group>"; };
+		FBD1FCEE196C0F5D00F708BC /* AccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccessToken.h; path = Models/AccessToken.h; sourceTree = "<group>"; };
+		FBD1FCEF196C0F5D00F708BC /* AccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccessToken.m; path = Models/AccessToken.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,8 +189,14 @@
 		FB733933196AD1E300D33BBE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				F5B012731966D4F5001C2050 /* AccessToken.h */,
-				F5B012741966D4F5001C2050 /* AccessToken.m */,
+				FBD1FCEE196C0F5D00F708BC /* AccessToken.h */,
+				FBD1FCEF196C0F5D00F708BC /* AccessToken.m */,
+				FBD1FCEB196C0F5D00F708BC /* Authentication.h */,
+				FBD1FCEC196C0F5D00F708BC /* Authentication.m */,
+				FBD1FCE8196C0F5C00F708BC /* User.h */,
+				FBD1FCE9196C0F5C00F708BC /* User.m */,
+				FBD1FCE5196C0C9A00F708BC /* User+Mapping.h */,
+				FBD1FCE6196C0C9A00F708BC /* User+Mapping.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -322,9 +337,12 @@
 			files = (
 				FB733936196AD28100D33BBE /* API.m in Sources */,
 				F5B012721966D407001C2050 /* Platform.xcdatamodeld in Sources */,
+				FBD1FCEA196C0F5C00F708BC /* User.m in Sources */,
 				F5B011E81966BA9C001C2050 /* main.m in Sources */,
 				F5B011F51966BA9C001C2050 /* RYViewController.m in Sources */,
-				F5B012751966D4F5001C2050 /* AccessToken.m in Sources */,
+				FBD1FCF0196C0F5D00F708BC /* AccessToken.m in Sources */,
+				FBD1FCE7196C0C9A00F708BC /* User+Mapping.m in Sources */,
+				FBD1FCED196C0F5D00F708BC /* Authentication.m in Sources */,
 				F5B011EC1966BA9C001C2050 /* RYAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

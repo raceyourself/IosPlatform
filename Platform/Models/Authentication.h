@@ -1,5 +1,5 @@
 //
-//  AccessToken.h
+//  Authentication.h
 //  Platform
 //
 //  Created by Janne Husberg on 08/07/2014.
@@ -11,10 +11,11 @@
 
 @class User;
 
-@interface AccessToken : NSManagedObject
+@interface Authentication : NSManagedObject
 
-@property (nonatomic, retain) NSString * access_token;
-@property (nonatomic, retain) NSDate * expiration_time;
+@property (nonatomic, retain) NSString * provider;
+@property (nonatomic, retain) NSString * uid;
+@property (nonatomic, retain) NSString * permissions;
 @property (nonatomic, retain) User *user;
 
 @end

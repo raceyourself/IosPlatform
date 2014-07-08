@@ -1,19 +1,20 @@
 //
-//  AccessToken.m
+//  Authentication.m
 //  Platform
 //
 //  Created by Janne Husberg on 08/07/2014.
 //  Copyright (c) 2014 raceyourself. All rights reserved.
 //
 
-#import "AccessToken.h"
+#import "Authentication.h"
 #import "User.h"
 
 
-@implementation AccessToken
+@implementation Authentication
 
-@dynamic access_token;
-@dynamic expiration_time;
+@dynamic provider;
+@dynamic uid;
+@dynamic permissions;
 @dynamic user;
 
 @end
