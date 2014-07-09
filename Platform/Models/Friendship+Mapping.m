@@ -4,21 +4,12 @@
 
 @implementation Friendship (Mapping)
 
-- (NSString*)id                                                                           
+- (BOOL) shouldImportFriend:(id)data
 {
-  [self willAccessValueForKey:@"id"];
-  
-  NSString *id = self.friend.id;
-
-  [self didAccessValueForKey:@"id"];
-
-  return id;
-}
-
-+ (id)extractPKFromObject:(id)data
-{
-  // TODO: Remove Friendship model from coredata
-  return [Friend extractPKFromObject:[data objectForKey:@"friend"]];
+  if (self.friend != nil) {
+    [self.friend MR_deleteEntity];
+  }
+  return YES;
 }
 
 @end

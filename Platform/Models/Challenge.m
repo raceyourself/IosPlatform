@@ -2,7 +2,7 @@
 //  Challenge.m
 //  Platform
 //
-//  Created by Janne Husberg on 08/07/2014.
+//  Created by Janne Husberg on 09/07/2014.
 //  Copyright (c) 2014 raceyourself. All rights reserved.
 //
 
@@ -12,17 +12,17 @@
 @implementation Challenge
 
 @dynamic accepted;
-@dynamic id;
-@dynamic start_time;
-@dynamic stop_time;
-@dynamic public;
 @dynamic creator_id;
+@dynamic desc;
 @dynamic distance;
 @dynamic duration;
+@dynamic id;
 @dynamic name;
-@dynamic desc;
 @dynamic points_awarded;
 @dynamic prize;
+@dynamic public;
+@dynamic start_time;
+@dynamic stop_time;
 @dynamic type;
 
 @end

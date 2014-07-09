@@ -2,7 +2,7 @@
 //  Friendship.m
 //  Platform
 //
-//  Created by Janne Husberg on 08/07/2014.
+//  Created by Janne Husberg on 09/07/2014.
 //  Copyright (c) 2014 raceyourself. All rights reserved.
 //
 
@@ -13,9 +13,9 @@
 @implementation Friendship
 
 @dynamic deleted_at;
+@dynamic guid;
 @dynamic identity_type;
 @dynamic identity_uid;
-@dynamic id;
 @dynamic friend;
 
 @end

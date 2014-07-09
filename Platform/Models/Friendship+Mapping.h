@@ -2,6 +2,4 @@
 
 @interface Friendship (Mapping)
 
-+ (id)extractPKFromObject:(id)data;
-
 @end

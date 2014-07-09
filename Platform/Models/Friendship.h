@@ -2,7 +2,7 @@
 //  Friendship.h
 //  Platform
 //
-//  Created by Janne Husberg on 08/07/2014.
+//  Created by Janne Husberg on 09/07/2014.
 //  Copyright (c) 2014 raceyourself. All rights reserved.
 //
 
@@ -14,9 +14,9 @@
 @interface Friendship : NSManagedObject
 
 @property (nonatomic, retain) NSDate * deleted_at;
+@property (nonatomic, retain) NSString * guid;
 @property (nonatomic, retain) NSString * identity_type;
 @property (nonatomic, retain) NSString * identity_uid;
-@property (nonatomic, retain) NSString * id;
 @property (nonatomic, retain) Friend *friend;
 
 @end

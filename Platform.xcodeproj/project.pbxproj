@@ -28,13 +28,14 @@
 		FB733936196AD28100D33BBE /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = FB733935196AD28100D33BBE /* API.m */; };
 		FBD1FCE7196C0C9A00F708BC /* User+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FCE6196C0C9A00F708BC /* User+Mapping.m */; };
 		FBD1FD05196C2C8D00F708BC /* Friend+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FD04196C2C8D00F708BC /* Friend+Mapping.m */; };
-		FBD1FD08196C2FC900F708BC /* Friendship.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FD07196C2FC900F708BC /* Friendship.m */; };
-		FBD1FD0B196C2FCA00F708BC /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FD0A196C2FCA00F708BC /* Friend.m */; };
-		FBD1FD0E196C2FCA00F708BC /* Challenge.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FD0D196C2FCA00F708BC /* Challenge.m */; };
-		FBD1FD11196C2FCA00F708BC /* AccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FD10196C2FCA00F708BC /* AccessToken.m */; };
-		FBD1FD14196C2FCA00F708BC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FD13196C2FCA00F708BC /* User.m */; };
-		FBD1FD17196C2FCB00F708BC /* Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FD16196C2FCB00F708BC /* Authentication.m */; };
 		FBD1FD1A196C303600F708BC /* Friendship+Mapping.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FD19196C303600F708BC /* Friendship+Mapping.m */; };
+		FBD1FD41196D519F00F708BC /* AccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FD40196D519F00F708BC /* AccessToken.m */; };
+		FBD1FD44196D51A000F708BC /* Challenge.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FD43196D51A000F708BC /* Challenge.m */; };
+		FBD1FD47196D51A000F708BC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FD46196D51A000F708BC /* User.m */; };
+		FBD1FD4A196D51A000F708BC /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FD49196D51A000F708BC /* Notification.m */; };
+		FBD1FD4D196D51A000F708BC /* Friendship.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FD4C196D51A000F708BC /* Friendship.m */; };
+		FBD1FD50196D51A000F708BC /* Friend.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FD4F196D51A000F708BC /* Friend.m */; };
+		FBD1FD53196D51A000F708BC /* Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = FBD1FD52196D51A000F708BC /* Authentication.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,20 +79,22 @@
 		FBD1FCE6196C0C9A00F708BC /* User+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "User+Mapping.m"; path = "Models/User+Mapping.m"; sourceTree = "<group>"; };
 		FBD1FD03196C2C8D00F708BC /* Friend+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Friend+Mapping.h"; path = "Models/Friend+Mapping.h"; sourceTree = "<group>"; };
 		FBD1FD04196C2C8D00F708BC /* Friend+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Friend+Mapping.m"; path = "Models/Friend+Mapping.m"; sourceTree = "<group>"; };
-		FBD1FD06196C2FC900F708BC /* Friendship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Friendship.h; path = Models/Friendship.h; sourceTree = "<group>"; };
-		FBD1FD07196C2FC900F708BC /* Friendship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Friendship.m; path = Models/Friendship.m; sourceTree = "<group>"; };
-		FBD1FD09196C2FCA00F708BC /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Friend.h; path = Models/Friend.h; sourceTree = "<group>"; };
-		FBD1FD0A196C2FCA00F708BC /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Friend.m; path = Models/Friend.m; sourceTree = "<group>"; };
-		FBD1FD0C196C2FCA00F708BC /* Challenge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Challenge.h; path = Models/Challenge.h; sourceTree = "<group>"; };
-		FBD1FD0D196C2FCA00F708BC /* Challenge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Challenge.m; path = Models/Challenge.m; sourceTree = "<group>"; };
-		FBD1FD0F196C2FCA00F708BC /* AccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccessToken.h; path = Models/AccessToken.h; sourceTree = "<group>"; };
-		FBD1FD10196C2FCA00F708BC /* AccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccessToken.m; path = Models/AccessToken.m; sourceTree = "<group>"; };
-		FBD1FD12196C2FCA00F708BC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Models/User.h; sourceTree = "<group>"; };
-		FBD1FD13196C2FCA00F708BC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Models/User.m; sourceTree = "<group>"; };
-		FBD1FD15196C2FCB00F708BC /* Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Authentication.h; path = Models/Authentication.h; sourceTree = "<group>"; };
-		FBD1FD16196C2FCB00F708BC /* Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Authentication.m; path = Models/Authentication.m; sourceTree = "<group>"; };
 		FBD1FD18196C303600F708BC /* Friendship+Mapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Friendship+Mapping.h"; path = "Models/Friendship+Mapping.h"; sourceTree = "<group>"; };
 		FBD1FD19196C303600F708BC /* Friendship+Mapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Friendship+Mapping.m"; path = "Models/Friendship+Mapping.m"; sourceTree = "<group>"; };
+		FBD1FD3F196D519F00F708BC /* AccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccessToken.h; path = Models/AccessToken.h; sourceTree = "<group>"; };
+		FBD1FD40196D519F00F708BC /* AccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccessToken.m; path = Models/AccessToken.m; sourceTree = "<group>"; };
+		FBD1FD42196D51A000F708BC /* Challenge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Challenge.h; path = Models/Challenge.h; sourceTree = "<group>"; };
+		FBD1FD43196D51A000F708BC /* Challenge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Challenge.m; path = Models/Challenge.m; sourceTree = "<group>"; };
+		FBD1FD45196D51A000F708BC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Models/User.h; sourceTree = "<group>"; };
+		FBD1FD46196D51A000F708BC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Models/User.m; sourceTree = "<group>"; };
+		FBD1FD48196D51A000F708BC /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Notification.h; path = Models/Notification.h; sourceTree = "<group>"; };
+		FBD1FD49196D51A000F708BC /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Notification.m; path = Models/Notification.m; sourceTree = "<group>"; };
+		FBD1FD4B196D51A000F708BC /* Friendship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Friendship.h; path = Models/Friendship.h; sourceTree = "<group>"; };
+		FBD1FD4C196D51A000F708BC /* Friendship.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Friendship.m; path = Models/Friendship.m; sourceTree = "<group>"; };
+		FBD1FD4E196D51A000F708BC /* Friend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Friend.h; path = Models/Friend.h; sourceTree = "<group>"; };
+		FBD1FD4F196D51A000F708BC /* Friend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Friend.m; path = Models/Friend.m; sourceTree = "<group>"; };
+		FBD1FD51196D51A000F708BC /* Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Authentication.h; path = Models/Authentication.h; sourceTree = "<group>"; };
+		FBD1FD52196D51A000F708BC /* Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Authentication.m; path = Models/Authentication.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,20 +207,22 @@
 		FB733933196AD1E300D33BBE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FBD1FD51196D51A000F708BC /* Authentication.h */,
+				FBD1FD52196D51A000F708BC /* Authentication.m */,
+				FBD1FD4E196D51A000F708BC /* Friend.h */,
+				FBD1FD4F196D51A000F708BC /* Friend.m */,
+				FBD1FD4B196D51A000F708BC /* Friendship.h */,
+				FBD1FD4C196D51A000F708BC /* Friendship.m */,
+				FBD1FD48196D51A000F708BC /* Notification.h */,
+				FBD1FD49196D51A000F708BC /* Notification.m */,
+				FBD1FD45196D51A000F708BC /* User.h */,
+				FBD1FD46196D51A000F708BC /* User.m */,
+				FBD1FD42196D51A000F708BC /* Challenge.h */,
+				FBD1FD43196D51A000F708BC /* Challenge.m */,
+				FBD1FD3F196D519F00F708BC /* AccessToken.h */,
+				FBD1FD40196D519F00F708BC /* AccessToken.m */,
 				FBD1FD18196C303600F708BC /* Friendship+Mapping.h */,
 				FBD1FD19196C303600F708BC /* Friendship+Mapping.m */,
-				FBD1FD15196C2FCB00F708BC /* Authentication.h */,
-				FBD1FD16196C2FCB00F708BC /* Authentication.m */,
-				FBD1FD12196C2FCA00F708BC /* User.h */,
-				FBD1FD13196C2FCA00F708BC /* User.m */,
-				FBD1FD0F196C2FCA00F708BC /* AccessToken.h */,
-				FBD1FD10196C2FCA00F708BC /* AccessToken.m */,
-				FBD1FD0C196C2FCA00F708BC /* Challenge.h */,
-				FBD1FD0D196C2FCA00F708BC /* Challenge.m */,
-				FBD1FD09196C2FCA00F708BC /* Friend.h */,
-				FBD1FD0A196C2FCA00F708BC /* Friend.m */,
-				FBD1FD06196C2FC900F708BC /* Friendship.h */,
-				FBD1FD07196C2FC900F708BC /* Friendship.m */,
 				FBD1FD03196C2C8D00F708BC /* Friend+Mapping.h */,
 				FBD1FD04196C2C8D00F708BC /* Friend+Mapping.m */,
 				FBD1FCE5196C0C9A00F708BC /* User+Mapping.h */,
@@ -360,20 +365,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBD1FD14196C2FCA00F708BC /* User.m in Sources */,
 				FB733936196AD28100D33BBE /* API.m in Sources */,
-				FBD1FD0B196C2FCA00F708BC /* Friend.m in Sources */,
 				FBD1FD05196C2C8D00F708BC /* Friend+Mapping.m in Sources */,
+				FBD1FD41196D519F00F708BC /* AccessToken.m in Sources */,
 				F5B012721966D407001C2050 /* Platform.xcdatamodeld in Sources */,
 				F5B011E81966BA9C001C2050 /* main.m in Sources */,
-				FBD1FD17196C2FCB00F708BC /* Authentication.m in Sources */,
 				F5B011F51966BA9C001C2050 /* RYViewController.m in Sources */,
-				FBD1FD11196C2FCA00F708BC /* AccessToken.m in Sources */,
-				FBD1FD0E196C2FCA00F708BC /* Challenge.m in Sources */,
+				FBD1FD50196D51A000F708BC /* Friend.m in Sources */,
+				FBD1FD53196D51A000F708BC /* Authentication.m in Sources */,
 				FBD1FCE7196C0C9A00F708BC /* User+Mapping.m in Sources */,
-				FBD1FD08196C2FC900F708BC /* Friendship.m in Sources */,
+				FBD1FD47196D51A000F708BC /* User.m in Sources */,
 				FBD1FD1A196C303600F708BC /* Friendship+Mapping.m in Sources */,
+				FBD1FD4D196D51A000F708BC /* Friendship.m in Sources */,
+				FBD1FD4A196D51A000F708BC /* Notification.m in Sources */,
 				F5B011EC1966BA9C001C2050 /* RYAppDelegate.m in Sources */,
+				FBD1FD44196D51A000F708BC /* Challenge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
